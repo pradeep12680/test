@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Priyanka 💖</title>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<style>
+body{
+    margin:0;
+    padding:0;
+    font-family:'Comic Sans MS', cursive;
+    background:linear-gradient(135deg,#ffc1dc,#ff4da6);
+    text-align:center;
+    color:white;
+    overflow:hidden;
+}
+
+/* Title */
+h1{
+    margin-top:80px;
+    font-size:2.5em;
+    text-shadow:0 0 20px white;
+}
+
+/* Name Glow */
+#names{
+    font-size:1.8em;
+    margin-top:10px;
+	margin-bottom:20px;
+    animation:glow 1s infinite alternate;
+}
+
+@keyframes glow{
+    from{ text-shadow:0 0 10px white;}
+    to{ text-shadow:0 0 30px yellow;}
+}
+
+/* Message */
+#popup{
+    height:30px;
+    line-height:30px;
+    font-size:20px;
+    margin-top:10px;
+	margin-bottom:20px;
+    font-weight:bold;
+    display:none;
+}
+
+/* Buttons */
+button{
+    padding:12px 30px;
+    font-size:18px;
+    border:none;
+    border-radius:40px;
+    cursor:pointer;
+    margin:15px;
+    transition:0.3s;
+}
+
+#yes{
+    background:#ff0066;
+    color:white;
+    box-shadow:0 0 15px white;
+}
+
+#no{
+    background:white;
+    color:#ff0066;
+}
+
+button:hover{
+    transform:scale(1.1);
+}
+
+/* Ring */
+#ringBox{
+    display:none;
+    margin-top:40px;
+    animation:pop 1s ease-in-out;
+}
+
+#ring{
+    font-size:80px;
+    animation:rotate 2s infinite linear;
+}
+
+@keyframes rotate{
+    0%{ transform:rotateY(0deg);}
+    100%{ transform:rotateY(360deg);}
+}
+
+@keyframes pop{
+    from{ transform:scale(0);}
+    to{ transform:scale(1);}
+}
+
+/* Falling Roses */
+.rose{
+    position:absolute;
+    font-size:45px;
+    animation:fall 6s linear infinite;
+}
+
+@keyframes fall{
+    0%{ transform:translateY(-10vh);}
+    100%{ transform:translateY(100vh);}
+}
+
+/* Hearts */
+.heart{
+    position:absolute;
+    font-size:60px;
+    animation:float 6s linear infinite;
+}
+
+@keyframes float{
+    0%{ transform:translateY(100vh);}
+    100%{ transform:translateY(-10vh);}
+}
+
+/* Celebration */
+#celebration{
+    display:none;
+    font-size:28px;
+    margin-top:30px;
+    animation:glow 1s infinite alternate;
+}
+
+/* Mobile adjustments */
+@media(max-width:600px){
+    h1{font-size:1.8em;}
+    #names{font-size:1.3em;}
+    button{font-size:16px;padding:10px 25px;}
+}
+
+</style>
+</head>
+<body>
+
+<h1>Will You Be My Valentine? 💖</h1>
+<div id="names">Pradeep ❤️ Priyanka</div>
+<div id="popup"></div>
+
+<button id="yes">YES 💕</button>
+<button id="no">NO 😢</button>
+
+<div id="ringBox">
+    <div id="ring">💍</div>
+</div>
+
+<div id="celebration">
+    Priyanka 💖 You Make My World Beautiful 🌎💘
+</div>
+
+<!-- Romantic Music -->
+<audio id="music" loop>
+  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+$(document).ready(function(){
+
+    let messages = [
+        "Are you sure? 😢",
+        "Think again please... 🥺",
+        "Really sure? 💔",
+        "You're breaking my heart Pinku 😭",
+        "Last chance Priyanka 💘",
+        "Okay fine... I'll keep loving you anyway 💕"
+    ];
+    let count = 0;
+
+    $("#no").click(function(){
+        if(count < messages.length){
+            $("#popup").text(messages[count]).fadeIn();
+            count++;
+        } else {
+            $("#popup").text("Now just click YES 😍");
+        }
+    });
+
+    $("#yes").click(function(){
+
+        $("#music")[0].play();
+
+        $("button,#popup").fadeOut();
+        $("#ringBox").fadeIn();
+        $("#celebration").fadeIn();
+
+        startRoses();
+    });
+
+    // Floating Hearts
+    setInterval(function(){
+        let heart = $("<div class='heart'>💖</div>");
+        heart.css({
+            left: Math.random()*100 + "vw",
+            animationDuration: (Math.random()*3+3) + "s"
+        });
+        $("body").append(heart);
+        setTimeout(()=> heart.remove(),6000);
+    },500);
+
+    function startRoses(){
+        setInterval(function(){
+            let rose = $("<div class='rose'>🌹</div>");
+            rose.css({
+                left: Math.random()*100 + "vw",
+                animationDuration: (Math.random()*3+4) + "s"
+            });
+            $("body").append(rose);
+            setTimeout(()=> rose.remove(),6000);
+        },400);
+    }
+
+});
+</script>
+
+</body>
+</html>
